@@ -6,7 +6,6 @@
 
 int main(void)
 {
-	//char input[255];	// assume valid input
 	char *input;
 	printf("Enter a line of 255 characters or less: ");
 	scanf("%[^\n]s", input);	// [^\n] means "accept all characters except for \n" so we can allow spaces
