@@ -32,21 +32,6 @@ int main(void)
 			default:
 				putchar(ch);
 		}
-		//if(ch == '.')
-		//{
-		//	putchar('!');
-		//	num_subs++;
-		//}
-		//else if(ch == '!')
-		//{
-		//	putchar('!');
-		//	putchar('!');
-		//	num_subs++;
-		//}
-		//else
-		//{
-		//	putchar(ch);
-		//}
 	}
 
 	printf("\n%d subsitutions made.\n", num_subs);
