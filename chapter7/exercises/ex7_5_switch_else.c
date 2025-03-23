@@ -1,7 +1,7 @@
 // Exercise 7.5
 // Redo exercise 4 using a switch statement
 // NOTE: The book says redo exercise 3, I assume this is a mistake because
-// there is nowhere for a switch to be used
+// there is nowhere for a switch to be used in exercise 3
 // using if else statements, write a program that reads input up to'#'
 // replaces each period with an exclamation mark, replaces each exclamation mark
 // initially present with two exclamation marks and reports at the end the number
