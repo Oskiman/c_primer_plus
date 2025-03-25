@@ -51,7 +51,7 @@ int main(void)
 					break;
 			case 5:	quit = true;
 					break;
-			default:	print_menu();	// any other integer input, we simply ask again
+			default:	print_menu();	// output menu until quit
 					continue;
 		}
 
