@@ -37,7 +37,7 @@ int main(void)
 
 	print_menu();
 
-	while(scanf("%d", &input) == 1) 	// while input is an integer, if not, quit
+	while(scanf("%d", &input) == 1) 
 	{
 		switch(input)
 		{
