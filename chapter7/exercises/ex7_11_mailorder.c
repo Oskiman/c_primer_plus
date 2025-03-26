@@ -93,21 +93,17 @@ int main(void)
 
 		// calculate grand totals
 		if(total_weight < under_5)					//weight of order is under 5lbs
-		// just do shipping costs, can add to grand total once at end?
 			shipping_charges = SHIP_LESS_5;
-			//grand_total = (total_before_ship + SHIP_LESS_5);
 		else if(total_weight >= under_5 || total_weight < under_20)	// weight of order is between 5 & 20 lbs
 			shipping_charges = SHIP_5_20;
-			//grand_total = (total_before_ship + SHIP_5_20);
 		else if(total_weight > under_20)				// weight of order is over 20lbs
 		{
 			if(total_weight > over_100)				// weight of order is over 100lbs so apply 5% discount before calculating shipping costs
-				total_discount = total_before_ship * SHIP_DISCOUNT;
+				total_discount = total_before_ship - (total_before_ship * SHIP_DISCOUNT);
 				total_before_ship -= total_discount;
 		
 		//SHIP_20_PLUS and add EXCESS_20 per lb over 20
 		shipping_charges = SHIP_20_PLUS + ((total_weight - under_20) * EXCESS_20);
-		//grand_total = (total_before_ship + SHIP_20_PLUS) + ((total_weight - under_20) * EXCESS_20);
 
 		}
 		
@@ -116,15 +112,16 @@ int main(void)
 		// output totals
 		printf("Order invoice (all prices in $)\n");
 		printf("Produce\t\tCost per lb\tlbs ordered\tsubtotal\n");
-		printf("Artichokes\t%f\t%f\t%f\n", ARTICHOKES_PRICE, artichokes_amount, arti_total_price);
-		printf("Beets\t\t%f\t%f\t%f\n", BEETS_PRICE, beets_amount, beets_total_price);
-		printf("Carrots\t\t%f\t%f\t%f\n", CARROTS_PRICE, carrots_amount, carr_total_price);
+		printf("Artichokes\t%.2f\t\t%.2f\t\t%.2f\n", ARTICHOKES_PRICE, artichokes_amount, arti_total_price);
+		printf("Beets\t\t%.2f\t\t%.2f\t\t%.2f\n", BEETS_PRICE, beets_amount, beets_total_price);
+		printf("Carrots\t\t%.2f\t\t%.2f\t\t%.2f\n", CARROTS_PRICE, carrots_amount, carr_total_price);
 		printf("\n");
-		printf("Total Cost:\t%f\n", total_before_ship);
-		printf("Discount:\t%f\n", total_discount);
-		printf("Shipping:\t%f\n", shipping_charges);
+		printf("Total Cost:\t%.2f\n", total_before_ship);
+		printf("Discount:\t%.2f\n", total_discount);
+		printf("Shipping:\t%.2f\n", shipping_charges);
 		printf("\n");
-		printf("Grand total:\t%f\n", grand_total);
+		printf("Grand total:\t%.2f\n", grand_total);
+		printf("\n");
 
 	}
 	return 0;
