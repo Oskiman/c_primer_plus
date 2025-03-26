@@ -92,18 +92,18 @@ int main(void)
 		total_weight = amount_artichokes + amount_beets + amount_carrots;		
 
 		// calculate grand totals
-		if(total_weight < under_5)
+		if(total_weight < under_5)					//weight of order is under 5lbs
 			grand_total = (total_before_ship + SHIP_LESS_5);
-		else if(total_weight >= under_5 || total_weight < under_20)
+		else if(total_weight >= under_5 || total_weight < under_20)	// weight of order is between 5 & 20 lbs
 			grand_total = (total_before_ship + SHIP_5_20);
-		else if(total_weight > under_20)
+		else if(total_weight > under_20)				// weight of order is over 20lbs
 		{
-			if(total_weight > over_100)	// apply 5% discount before calculating shipping costs
+			if(total_weight > over_100)				// weight of order is over 100lbs so apply 5% discount before calculating shipping costs
 				total_discount = total_before_ship * SHIP_DISCOUNT;
 				total_before_ship -= total_discount;
 		
 		//SHIP_20_PLUS and add EXCESS_20 per lb over 20
-		grand_total = (total_before_ship + SHIP_20_PLUS) + ((total_weight - under_20)
+		grand_total = (total_before_ship + SHIP_20_PLUS) + ((total_weight - under_20) * EXCESS_20);
 		}
 		
 		// output totals
