@@ -83,19 +83,22 @@ int main(void)
 			break;
 
 		// calculate prices etc.
-		arti_total_price = amount_artichokes * ARTICHOKES_PRICE;
-		beets_total_price = amount_beets * BEETS_PRICE;
-		carr_total_price = amount_carrots * CARROTS_PRICE;
+		arti_total_price = artichokes_amount * ARTICHOKES_PRICE;
+		beets_total_price = beets_amount * BEETS_PRICE;
+		carr_total_price = carrots_amount * CARROTS_PRICE;
 
 		total_before_ship = arti_total_price + beets_total_price + carr_total_price;
 
-		total_weight = amount_artichokes + amount_beets + amount_carrots;		
+		total_weight = artichokes_amount + beets_amount + carrots_amount;		
 
 		// calculate grand totals
 		if(total_weight < under_5)					//weight of order is under 5lbs
-			grand_total = (total_before_ship + SHIP_LESS_5);
+		// just do shipping costs, can add to grand total once at end?
+			shipping_charges = SHIP_LESS_5;
+			//grand_total = (total_before_ship + SHIP_LESS_5);
 		else if(total_weight >= under_5 || total_weight < under_20)	// weight of order is between 5 & 20 lbs
-			grand_total = (total_before_ship + SHIP_5_20);
+			shipping_charges = SHIP_5_20;
+			//grand_total = (total_before_ship + SHIP_5_20);
 		else if(total_weight > under_20)				// weight of order is over 20lbs
 		{
 			if(total_weight > over_100)				// weight of order is over 100lbs so apply 5% discount before calculating shipping costs
@@ -103,12 +106,27 @@ int main(void)
 				total_before_ship -= total_discount;
 		
 		//SHIP_20_PLUS and add EXCESS_20 per lb over 20
-		grand_total = (total_before_ship + SHIP_20_PLUS) + ((total_weight - under_20) * EXCESS_20);
+		shipping_charges = SHIP_20_PLUS + ((total_weight - under_20) * EXCESS_20);
+		//grand_total = (total_before_ship + SHIP_20_PLUS) + ((total_weight - under_20) * EXCESS_20);
+
 		}
 		
+		grand_total = total_before_ship + shipping_charges;
+
 		// output totals
+		printf("Order invoice (all prices in $)\n");
+		printf("Produce\t\tCost per lb\tlbs ordered\tsubtotal\n")
+		printf("Artichokes\t%f\t%f\t%f\n", ARTICHOKES_PRICE, artichokes_amount, arti_total_price);
+		printf("Beets\t\t%f\t%f\t%f\n", BEETS_PRICE, beets_amount, beets_total_price);
+		printf("Carrots\t\t%f\t%f\t%f\n", CARROTS_PRICE, carrots_amount, carr_total_price);
+		printf("\n");
+		printf("Total Cost:\t%f\n", total_before_ship);
+		printf("Discount:\t%f\n", total_discount);
+		printf("Shipping:\t%f\n", shipping_charges);
+		printf("\n");
+		printf("Grand total:\t%f, grand_total);
 
-
+	}
 	return 0;
 }
 
