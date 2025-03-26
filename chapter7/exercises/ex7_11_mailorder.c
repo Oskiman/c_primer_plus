@@ -115,7 +115,7 @@ int main(void)
 
 		// output totals
 		printf("Order invoice (all prices in $)\n");
-		printf("Produce\t\tCost per lb\tlbs ordered\tsubtotal\n")
+		printf("Produce\t\tCost per lb\tlbs ordered\tsubtotal\n");
 		printf("Artichokes\t%f\t%f\t%f\n", ARTICHOKES_PRICE, artichokes_amount, arti_total_price);
 		printf("Beets\t\t%f\t%f\t%f\n", BEETS_PRICE, beets_amount, beets_total_price);
 		printf("Carrots\t\t%f\t%f\t%f\n", CARROTS_PRICE, carrots_amount, carr_total_price);
@@ -124,7 +124,7 @@ int main(void)
 		printf("Discount:\t%f\n", total_discount);
 		printf("Shipping:\t%f\n", shipping_charges);
 		printf("\n");
-		printf("Grand total:\t%f, grand_total);
+		printf("Grand total:\t%f\n", grand_total);
 
 	}
 	return 0;
