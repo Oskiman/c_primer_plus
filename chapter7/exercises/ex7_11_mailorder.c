@@ -66,15 +66,12 @@ int main(void)
 		{
 			case 'a':	printf("How many pounds of artichokes?: \n");//enter lbs of artichokes
 					scanf("%f", &artichokes_amount);
-					artichokes_amount += artichokes_amount;
 					break;
 			case 'b':	printf("How many pounds of beets?: \n");// enter lbs of beets
 					scanf("%f", &beets_amount);
-					beets_amount+= beets_amount;
 					break;
 			case 'c':	printf("How many pounds of carrots?: \n");// enter lbs of carrots
 					scanf("%f", &carrots_amount);
-					carrots_amount+= carrots_amount;
 					break;
 			case 'q':	quit = true;
 					break;
@@ -84,6 +81,9 @@ int main(void)
 
 		if(quit == true)
 			break;
+		//artichokes_amount += artichokes_amount;
+		//beets_amount += beets_amount;
+		//carrots_amount += carrots_amount;
 
 		// calculate prices etc.
 		arti_total_price = artichokes_amount * ARTICHOKES_PRICE;
