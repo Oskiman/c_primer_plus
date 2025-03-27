@@ -66,12 +66,15 @@ int main(void)
 		{
 			case 'a':	printf("How many pounds of artichokes?: \n");//enter lbs of artichokes
 					scanf("%f", &artichokes_amount);
+					artichokes_amount += artichokes_amount;
 					break;
 			case 'b':	printf("How many pounds of beets?: \n");// enter lbs of beets
 					scanf("%f", &beets_amount);
+					beets_amount+= beets_amount;
 					break;
 			case 'c':	printf("How many pounds of carrots?: \n");// enter lbs of carrots
 					scanf("%f", &carrots_amount);
+					carrots_amount+= carrots_amount;
 					break;
 			case 'q':	quit = true;
 					break;
@@ -89,7 +92,7 @@ int main(void)
 
 		total_before_ship = arti_total_price + beets_total_price + carr_total_price;
 
-		total_weight = artichokes_amount + beets_amount + carrots_amount;		
+		total_weight += artichokes_amount + beets_amount + carrots_amount;		
 
 		// calculate grand totals
 		if(total_weight < under_5)					//weight of order is under 5lbs
@@ -108,7 +111,7 @@ int main(void)
 		}
 		
 		grand_total = total_before_ship + shipping_charges;
-
+	}
 		// output totals
 		printf("Order invoice (all prices in $)\n");
 		printf("Produce\t\tCost per lb\tlbs ordered\tsubtotal\n");
@@ -123,7 +126,7 @@ int main(void)
 		printf("Grand total:\t%.2f\n", grand_total);
 		printf("\n");
 
-	}
+	
 	return 0;
 }
 
