@@ -14,7 +14,7 @@
 // artichokes $1.25 a pound
 // beets for $0.65 a pound
 // carrots for $0.89 a pound
-// 5% discount for orders of $100 or more prior to adding shipping costs
+// 5% discount for orders of 100lb or more prior to adding shipping costs
 // $3.50 shipping & handling for any order of 5 pounds or under
 // $10.00 shipping & handling for orders over 5 pounds and under 20 pounds
 // $8.00 plus $0.10 per pound for shipments of 20 pounds or over
@@ -97,18 +97,18 @@ int main(void)
 
 		total_weight += artichokes_total + beets_total + carrots_total;		
 
-		// calculate grand totals
+		// calculate totals
 		if(total_weight < under_5)					//weight of order is under 5lbs
 			shipping_charges = SHIP_LESS_5;
-		else if(total_weight >= under_5 || total_weight < under_20)	// weight of order is between 5 & 20 lbs
+		else if(total_weight >= under_5 && total_weight < under_20)	// weight of order is between 5 & 20 lbs
 			shipping_charges = SHIP_5_20;
 		else if(total_weight > under_20)				// weight of order is over 20lbs
 		{
 			if(total_weight > over_100)				// weight of order is over 100lbs so apply 5% discount before calculating shipping costs
-				{
+			{
 				total_discount = total_before_ship * SHIP_DISCOUNT;
 				total_before_ship -= total_discount;
-				}
+			}
 
 		//SHIP_20_PLUS and add EXCESS_20 per lb over 20
 		shipping_charges = SHIP_20_PLUS + ((total_weight - under_20) * EXCESS_20);
