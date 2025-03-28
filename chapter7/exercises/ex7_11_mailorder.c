@@ -88,7 +88,7 @@ int main(void)
 		if(quit == true)
 			break;
 
-		// calculate prices etc.
+		// calculate prices and total weight
 		arti_total_price = artichokes_total * ARTICHOKES_PRICE;
 		beets_total_price = beets_total * BEETS_PRICE;
 		carr_total_price = carrots_total * CARROTS_PRICE;
