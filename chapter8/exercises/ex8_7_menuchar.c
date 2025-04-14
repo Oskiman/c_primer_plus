@@ -8,6 +8,7 @@
 // the program should remind the user what the proper choices are
 // and then recycle.  Use #defined constants
 
+#include <ctype.h>
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -34,24 +35,25 @@ int main(void)
 	float net_pay = 0.0;
 	float tax_paid = 0.0;
 	float rate_pay = 0.0;
-	int input;
+	char input;
 	bool quit = false;
 
 	print_menu();
 
-	while(scanf("%d", &input) == 1) 	// while input is an integer, if not, quit
+	while(scanf("%c", &input) == 1) 	// while input is an integer, if not, quit
 	{
+		input = toupper(input);
 		switch(input)
 		{
-			case 1:	rate_pay = RATE_1;
+			case 'A':	rate_pay = RATE_1;
 					break;
-			case 2:	rate_pay = RATE_2;
+			case 'B':	rate_pay = RATE_2;
 					break;
-			case 3:	rate_pay = RATE_3;
+			case 'C':	rate_pay = RATE_3;
 					break;
-			case 4:	rate_pay = RATE_4;
+			case 'D':	rate_pay = RATE_4;
 					break;
-			case 5:	quit = true;
+			case 'Q':	quit = true;
 					break;
 			default:	print_menu();	// any other integer input, we simply ask again
 					continue;
@@ -97,9 +99,9 @@ void print_menu()
 {
 	printf("*****************************************************************\n");
 	printf("Enter the number corresponding to the desired pay rate or action:\n");
-	printf("1) $8.75/hr			2) $9.33/hr\n");
-	printf("3) $10.00/hr			4) $11.20/hr\n");
-	printf("5) quit\n");
+	printf("A) $8.75/hr			B) $9.33/hr\n");
+	printf("C) $10.00/hr			D) $11.20/hr\n");
+	printf("Q) quit\n");
 	printf("*****************************************************************\n");
 
 }
