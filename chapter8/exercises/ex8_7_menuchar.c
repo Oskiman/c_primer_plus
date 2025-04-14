@@ -40,7 +40,7 @@ int main(void)
 
 	print_menu();
 
-	while(scanf("%c", &input) == 1) 	// while input is an integer, if not, quit
+	while(scanf("%c", &input) == 1) 	// while input is a character, if not, quit
 	{
 		input = toupper(input);
 		switch(input)
@@ -55,7 +55,7 @@ int main(void)
 					break;
 			case 'Q':	quit = true;
 					break;
-			default:	print_menu();	// any other integer input, we simply ask again
+			default:	print_menu();	// any other character input, we simply ask again
 					continue;
 		}
 
