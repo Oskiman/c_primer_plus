@@ -4,10 +4,22 @@
 #include <stdio.h>
 
 char* fetch_n_chars(char* input, int num);
-
-int main(void)
+int main(int argc, char* argv[])
+//int main(void)
 {
+	//char input[] = "Hello World!";
+	//int num = 5;
+	if(argc != 2)
+	{
+		printf("Usage: ./program_name, input_string\n");
+		break;
+	}
 
+	int num;
+	printf("How many characters should I fetch?: ");
+	scanf("%d", &num);
+
+	printf("%s\n", fetch_n_chars(*argv, num));
 
 	return 0;
 }
@@ -15,7 +27,7 @@ int main(void)
 char* fetch_n_chars(char* input, int num)
 {
 	char* output;
-	char* ch;	// to traverse input
+	char ch;	// to traverse input
 
 	for(int i = 0; i < num; i++)
 	{
@@ -26,5 +38,4 @@ char* fetch_n_chars(char* input, int num)
 	}
 
 	return output;
-	
 }
