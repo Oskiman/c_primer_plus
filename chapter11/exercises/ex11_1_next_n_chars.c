@@ -9,10 +9,9 @@ int main(int argc, char* argv[])
 {
 	//char input[] = "Hello World!";
 	//int num = 5;
-	if(argc != 2)
+	while(argc != 2)
 	{
 		printf("Usage: ./program_name, input_string\n");
-		break;
 	}
 
 	int num;
