@@ -2,39 +2,62 @@
 // Design and test a function that fetches the next n 
 // characters from input including blanks, tabs and newlines
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
 char* fetch_n_chars(char* input, int num);
 int main(int argc, char* argv[])
-//int main(void)
 {
-	//char input[] = "Hello World!";
-	//int num = 5;
-	while(argc != 2)
-	{
-		printf("Usage: ./program_name, input_string\n");
-	}
+    if(argc < 2)
+    {
+        printf("Usage: ./program_name input_string\n");
+        return 1;
+    }
 
-	int num;
-	printf("How many characters should I fetch?: ");
-	scanf("%d", &num);
+    int num;
+    printf("How many characters should I fetch?: ");
+    if(scanf("%d", &num) != 1)
+    {
+        printf("Invalid input. Please enter a valid number.\n");
+        return 1;
+    }
 
-	printf("%s\n", fetch_n_chars(*argv, num));
+    if(num <= 0)
+    {
+        printf("Number of characters must be greater than zero.\n");
+        return 1;
+    }
 
-	return 0;
+    char* result = fetch_n_chars(argv[1], num);
+    if(result == NULL)
+    {
+        printf("Failed to fetch characters.\n");
+        return 1;
+    }
+
+    printf("%s\n", result);
+    free(result);
+
+    return 0;
 }
 
 char* fetch_n_chars(char* input, int num)
 {
-	char* output;
-	char ch;	// to traverse input
+    if(input == NULL || num <= 0)
+        return NULL;
 
-	for(int i = 0; i < num; i++)
-	{
-		if((ch = getchar()) == EOF)	// reached end before num
-			break;
+    char* output = (char*)malloc((num + 1) * sizeof(char));
+    if(output == NULL)
+        return NULL;
 
-		*(output + i) = ch;		// copy char to output array
-	}
+    for(int i = 0; i < num; i++)
+    {
+        if(input[i] == '\0')
+            break;
 
-	return output;
+        output[i] = input[i];
+    }
+    output[num] = '\0'; // null-terminate the output string
+
+    return output;
 }
