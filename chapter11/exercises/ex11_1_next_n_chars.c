@@ -6,6 +6,11 @@
 #include <stdlib.h>
 
 char* fetch_n_chars(char* input, int num);
+#include <stdio.h>
+#include <stdlib.h>
+
+char* fetch_n_chars(char* input, int num);
+
 int main(int argc, char* argv[])
 {
     if(argc < 2)                                            // check for correct number of arguments
@@ -28,26 +33,17 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    int num_chars;
-    for(num_chars = 0; *argv[num_chars] != '\0'; num_chars++);    // count the number of chars
+    //char* result = fetch_n_chars(argv[1], num);             // fetch characters from the input string
+    //if(result == NULL)                                      // check for memory allocation failure
+    //{
+    //    printf("Failed to fetch characters.\n");
+    //    return 1;
+    //}
 
-    char result[num_chars];     // allocate memory for the result as large as the input
-    //char* result = NULL;
-    while(*argv != NULL)
-    {
-        num_chars[argv] = fetch_n_chars(*argv, num);     
-        if(result == NULL)                                      // check for memory allocation failure
-        {
-            printf("Failed to fetch characters.\n");
-            return 1;
-        }
+    //printf("Fetched characters: %s\n", result);
+    printf("Fetched characters: %s\n", fetch_n_chars(argv[1], num));
 
-        argv++;
-    }
-        
-        printf("%s\n", result);
-        //free(result);
-
+    //free(result);                                           // free allocated memory
     return 0;
 }
 
