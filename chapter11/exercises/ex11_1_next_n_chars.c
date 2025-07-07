@@ -28,15 +28,25 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    char* result = fetch_n_chars(argv[1], num);     
-    if(result == NULL)                                      // check for memory allocation failure
-    {
-        printf("Failed to fetch characters.\n");
-        return 1;
-    }
+    int num_chars;
+    for(num_chars = 0; *argv[num_chars] != '\0'; num_chars++);    // count the number of chars
 
-    printf("%s\n", result);
-    free(result);
+    char result[num_chars];     // allocate memory for the result as large as the input
+    //char* result = NULL;
+    while(*argv != NULL)
+    {
+        num_chars[argv] = fetch_n_chars(*argv, num);     
+        if(result == NULL)                                      // check for memory allocation failure
+        {
+            printf("Failed to fetch characters.\n");
+            return 1;
+        }
+
+        argv++;
+    }
+        
+        printf("%s\n", result);
+        //free(result);
 
     return 0;
 }
