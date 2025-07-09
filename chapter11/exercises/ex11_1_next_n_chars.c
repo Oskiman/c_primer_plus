@@ -16,6 +16,7 @@ int main(int argc, char* argv[])
         return 1;
     }
 
+    char** arguments = store_args(argc, argv);       // store arguments in an array
     int num;
     printf("How many characters should I fetch?: ");
     if(scanf("%d", &num) != 1)                              // check for valid input
@@ -30,17 +31,22 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    char* result = fetch_n_chars(argv[1], num);             // fetch characters from the input string
-    if(result == NULL)                                      // check for memory allocation failure
-    {
-        printf("Failed to fetch characters.\n");
-        return 1;
-    }
+    // char* result = fetch_n_chars(argv[1], num);             // fetch characters from the input string
+    // if(result == NULL)                                      // check for memory allocation failure
+    // {
+    //     printf("Failed to fetch characters.\n");
+    //     return 1;
+    // }
+    char** result = fetch_n_chars(arguments, num);
 
     printf("Fetched characters: %s\n", result);
     //printf("Fetched characters: %s\n", fetch_n_chars(argv, num));
 
-    free(result);                                           // free allocated memory
+    for(int i = 0; i < argc; i++)
+        free(arguments[i]);                                 // free allocated memory
+
+    free(arguments);
+    //free(result);                                           // free allocated memory
     return 0;
 }
 
