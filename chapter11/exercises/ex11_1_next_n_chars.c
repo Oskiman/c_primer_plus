@@ -5,11 +5,8 @@
 #include <string.h>
 #include <stdlib.h>
 
-char* fetch_n_chars(char* input, int num);
-#include <stdio.h>
-#include <stdlib.h>
-
-char* fetch_n_chars(char* input, int num);
+char* fetch_n_chars(char* argv[], int num);
+char* store_args(int argc, char* argv[]);
 
 int main(int argc, char* argv[])
 {
@@ -33,37 +30,55 @@ int main(int argc, char* argv[])
         return 1;
     }
 
-    //char* result = fetch_n_chars(argv[1], num);             // fetch characters from the input string
-    //if(result == NULL)                                      // check for memory allocation failure
-    //{
-    //    printf("Failed to fetch characters.\n");
-    //    return 1;
-    //}
+    char* result = fetch_n_chars(argv[1], num);             // fetch characters from the input string
+    if(result == NULL)                                      // check for memory allocation failure
+    {
+        printf("Failed to fetch characters.\n");
+        return 1;
+    }
 
-    //printf("Fetched characters: %s\n", result);
-    printf("Fetched characters: %s\n", fetch_n_chars(argv[1], num));
+    printf("Fetched characters: %s\n", result);
+    //printf("Fetched characters: %s\n", fetch_n_chars(argv, num));
 
-    //free(result);                                           // free allocated memory
+    free(result);                                           // free allocated memory
     return 0;
 }
 
-char* fetch_n_chars(char* input, int num)
+char* fetch_n_chars(char* argv[], int num)
 {
-    if(input == NULL || num <= 0)                             // check for invalid input
+    if(args == NULL || num <= 0 || *args == NULL)              // check for invalid input
         return NULL;    
 
     char* output = (char*)malloc((num + 1) * sizeof(char));     // allocate memory for the output string
     if(output == NULL)
         return NULL;
 
-    for(int i = 0; i < num; i++)
+    int i = 0;
+    while(i < num && *args[0] != '\0')                         // copy characters from input to output
     {
-        if(input[i] == '\0')                                    // check for end of string
-            break;
-
-        output[i] = input[i];                                   // copy character from input to output
+        output[i] = *args[0];
+        args[0]++;
+        i++;
     }
-    output[num] = '\0'; // null-terminate the output string
+    output[i] = '\0'; // null-terminate the output string
 
     return output;
+}
+
+// copy args into an array
+char* store_args(int argc, char* argv[])
+{
+    char **arguments = (char**)malloc(argc * sizeof(char*));
+    if(arguments == NULL)
+    {   
+        printf("Failed to allocate memory for arguments.\n");
+        return NULL;
+    }
+    
+    for(int i = 0; i < argc; i++)
+    {
+        strcpy(arguments[i], argv[i]);
+    }
+
+    return arguments;
 }
