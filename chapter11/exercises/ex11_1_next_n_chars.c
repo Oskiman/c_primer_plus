@@ -38,39 +38,40 @@ int main(int argc, char* argv[])
     //     return 1;
     // }
     char** result = fetch_n_chars(arguments, num);
+    if(result == NULL)                                      // check for memory allocation failure
+    {
+        printf("Failed to fetch characters.\n");
+        return 1;
+    }
 
     printf("Fetched characters: %s\n", result);
-    //printf("Fetched characters: %s\n", fetch_n_chars(argv, num));
 
+    // free allocated memory
     for(int i = 0; i < argc; i++)
-        free(arguments[i]);                                 // free allocated memory
+        free(arguments[i]);                                 
 
     free(arguments);
-    //free(result);                                           // free allocated memory
+    free(result);                                        
     return 0;
 }
 
 char* fetch_n_chars(char* argv[], int num)
 {
-    if(args == NULL || num <= 0 || *args == NULL)              // check for invalid input
-        return NULL;    
-
-    char* output = (char*)malloc((num + 1) * sizeof(char));     // allocate memory for the output string
+    char* output = (char*)malloc(num * sizeof(char));
     if(output == NULL)
-        return NULL;
-
-    int i = 0;
-    while(i < num && *args[0] != '\0')                         // copy characters from input to output
     {
-        output[i] = *args[0];
-        args[0]++;
-        i++;
+        printf("Failed to allocate memory for output.\n");
+        return NULL;
     }
-    output[i] = '\0'; // null-terminate the output string
-
+    int index = 0;
+    while(argv[0][index] != '\0' && index < num)
+    {
+        output[index] = argv[0][index];
+        index++;
+    }
+    output[index] = '\0';
     return output;
 }
-
 // copy args into an array
 char* store_args(int argc, char* argv[])
 {
