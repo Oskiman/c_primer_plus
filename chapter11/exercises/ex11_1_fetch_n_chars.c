@@ -37,6 +37,7 @@ int main(int argc, char* argv[])
 	return 0;
 }
 
+// function just outputs first letter of each argv
 void next_n_chars_B(int num_chars, char *argv[])
 {
 	char *ch;
