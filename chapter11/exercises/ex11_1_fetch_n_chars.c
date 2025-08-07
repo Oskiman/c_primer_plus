@@ -4,10 +4,9 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <ctype.h>
 
-char* next_n_chars(int size, char* array);
-void next_n_chars_B(int num_chars, char *argv[]);
-
+char* next_n_chars(int size, char *array[]);
 
 int main(int argc, char* argv[])
 {
@@ -18,50 +17,28 @@ int main(int argc, char* argv[])
 		return -1;
 	}
 
-	// use argc to determine no. of args passed
-	// use strlen(argv[i]) for each argument
-	// TODO: need to take whitespace into account
-	size_t total_length = 0;
-	for(int i = 1; i < argc; i++)	// start at 1 to avoid counting program name
-	{
-		total_length += strlen(argv[i]);
-	}
-
-	printf("Total length: %ld\n", total_length);
-		
 	int num_chars = 0;
 	printf("How many characters?: ");
 	scanf("%d", &num_chars);
-	next_n_chars_B(num_chars, argv);
-
+	next_n_chars(num_chars, argv);
 	return 0;
 }
 
-// function just outputs first letter of each argv
-void next_n_chars_B(int num_chars, char *argv[])
-{
-	char *ch;
-
-	for(int i = 0; i < num_chars; i++)
-	{
-		ch = argv[i];
-		printf("%c", *ch);
-	}
-
-	printf("\n");
-}
-
-char* next_n_chars(int size, char* array)
+char* next_n_chars(int size, char* array[])
 {
 	char ch;
 
 	for(int i = 0; i < size; i++)
 	{
 		if((ch = getchar()) == EOF)	// we have reached the end of the file (obvs!)
-			break;			// so exit the loop
+		{
+			array[i] = '\0';	// add null character
+			break;			// exit the loop
+		}
 
-		*(array + i) = ch;		// otherwise copy the current char into array
+		//*(array + i) = ch;		// otherwise copy the current char into array
+		array[i] = ch;
 	}
-
-	return array;
+	
+	return *array;
 }
